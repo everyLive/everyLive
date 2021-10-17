@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- Base application theme -->
+    <style name="Theme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/Reply_Blue700</item>
+        <item name="colorSecondary">@color/Reply_Orange</item>
+    </style>
+</resources>
