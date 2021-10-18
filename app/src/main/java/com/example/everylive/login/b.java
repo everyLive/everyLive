@@ -10,9 +10,5 @@ public class b {
             Intent intent = new Intent(getApplicationContext(), .class);
             startActivity(intent);
             intent.putExtra("key",value);
-    /**
-     * 인텐트로 데이터 수신
-     */
-            Intent intent = getIntent();
-            String uri = intent.getStringExtra("key");
+
 }
