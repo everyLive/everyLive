@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">everyLive</string>
     <string name="kakao_app_key">DJO6gvkG66DiX8FS3Qp9EqkPYu4=</string>
+
+    <string name="naver_client_id">qZIImNwDRoeFGYSYPJFn</string>
+    <string name="naver_client_secret">fOdYO11P80</string>
+    <string name="naver_client_name">everyLive</string>
 </resources>
