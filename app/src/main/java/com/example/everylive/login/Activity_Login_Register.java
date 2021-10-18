@@ -40,7 +40,7 @@ public class Activity_Login_Register extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton select_man, select_woman;
     Button btn_Register;
-
+//
     // 서버 주소
     private static String IP_ADDRESS = "3.36.159.193";
 
