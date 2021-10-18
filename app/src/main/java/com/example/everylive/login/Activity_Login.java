@@ -44,7 +44,7 @@ public class Activity_Login extends AppCompatActivity {
     private ImageView btn_KakaoLogin, btn_NaverLogin;
     OAuthLogin mOAuthLoginModule;
     Context mContext;
-
+//
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
