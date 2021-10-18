@@ -113,6 +113,11 @@ public class Activity_Login extends AppCompatActivity {
                             new RequestApiTask(mContext, mOAuthLoginModule).execute();
 
                             Intent intent = new Intent(getApplicationContext(), Activity_Login_Register.class);
+
+                            // 쉐어드에 저장했던 값을 인텐트로 보낸다.
+
+
+
                             startActivity(intent);
 
                         } else {

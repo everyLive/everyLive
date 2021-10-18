@@ -1,12 +1,12 @@
 package com.example.everylive.login;
-import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,36 +25,36 @@ import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.everylive.R;
-import com.example.everylive.home.Activity_Home;
-
-import java.util.ArrayList;
 
 public class Activity_Login_Register extends AppCompatActivity {
 
     private static final String TAG = "로그인-회원가입";
 
     ImageView profileIMG;
-    TextView nickname;
+    EditText nickname;
     Context mContext;
     String nickName, profileimgURL, birthday, gender;
     RadioGroup radioGroup;
     RadioButton select_man, select_woman;
     Button btn_Register;
-//
-    // 서버 주소
-    private static String IP_ADDRESS = "3.36.159.193";
+
+    // 서버 주소 : aws
+    private static String IP_ADDRESS = "http://3.36.159.193";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_agree);
+        setContentView(R.layout.activity_login_register);
 
-        profileIMG = findViewById(R.id.profileIMG);
         nickname = findViewById(R.id.nickname);
         select_man = findViewById(R.id.select_man);
         select_woman = findViewById(R.id.select_woman);
         radioGroup = findViewById(R.id.radio_group);
         btn_Register = findViewById(R.id.btn_Register);
+
+        // 인텐트로 값을 받은 즉시,
+        // set해야되는거. 이미지, 닉네임.
+
 
 
         /***
@@ -94,6 +94,7 @@ public class Activity_Login_Register extends AppCompatActivity {
         Glide.with(this) // with() : View, Fragment 혹은 Activity로부터 Context를 가져온다.
                 .load(profileimgURL) // load() :  이미지를 로드한다. 다양한 방법으로 이미지를 불러올 수 있다. (Bitmap, Drawable, String, Uri, File, ResourId(Int), ByteArray)
                 .override(400, 400) // 이미지 사이즈 조절
+                .centerCrop()
 //                   .error(R.drawable.) // error() : 리소스를 불러오다가 에러가 발생했을 때 보여줄 이미지를 설정한다.
 //                   .fallback(R.drawable.) // fallback() : load할 url이 null인 경우 등 비어있을 때 보여줄 이미지를 설정한다.
                 .into(profileIMG); // into() : 이미지를 보여줄 View를 지정한다.
@@ -197,16 +198,15 @@ public class Activity_Login_Register extends AppCompatActivity {
         String snsType = sharedPref.getString("snsType","defValue");
 
         // 안드로이드에서 보낼 데이터를 받을 php 서버 주소
-        String serverUrl="http://" + IP_ADDRESS + "/Register.php";
-
+        String serverUrl = IP_ADDRESS + "/everyLive/login_register/Register.php";
 
         //파일 전송 요청 객체 생성[결과를 String으로 받음]
         SimpleMultiPartRequest smpr= new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                new AlertDialog.Builder(Activity_Login_Register.this).setMessage("응답:"+response).create().show();
+                //new AlertDialog.Builder(Activity_Login_Register.this).setMessage("응답:"+response).create().show();
 //            Toast.makeText(Activity_Login_Register.this,response, Toast.LENGTH_LONG).show();
-
+                Log.i("sendData-response", response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -214,6 +214,7 @@ public class Activity_Login_Register extends AppCompatActivity {
                 Toast.makeText(Activity_Login_Register.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         //요청 객체에 보낼 데이터를 추가
         smpr.addStringParam("profileIMG", profileIMG);
