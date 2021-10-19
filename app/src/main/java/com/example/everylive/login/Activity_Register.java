@@ -118,7 +118,6 @@ public class Activity_Register extends AppCompatActivity {
 
 
 
-
         /***
          * @auter 김태희
          * @brief 회원가입 버튼
