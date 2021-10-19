@@ -13,5 +13,6 @@
     <color name="Reply_Blue700">#344955</color>
     <color name="Reply_Blue800">#232F34</color>
     <color name="Reply_Blue600">#4A6572</color>
+    <color name="Reply_Blue600_light">#718893</color>
     <color name="Reply_Orange">#F9AA33</color>
 </resources>
