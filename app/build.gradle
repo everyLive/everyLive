@@ -46,5 +46,4 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // volley+ HTTP통신 라이브러리
     implementation 'dev.dworks.libs:volleyplus:+'
-
 }

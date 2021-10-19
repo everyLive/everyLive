@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme" >
+        <!--        volleyplus 라이브러리 사용시 필요-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
         <activity android:name=".login.Activity_Login"
             android:exported="true">
@@ -41,6 +43,10 @@
 
 
 
+
+
+        <activity android:name=".login.Activity_Register"
+            android:exported="true"/>
 
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
