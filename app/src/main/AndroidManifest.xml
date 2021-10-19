@@ -15,62 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme" >
 
-        <!--        volleyplus 라이브러리 사용시 필요-->
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-        <activity android:name=".login.Activity_Login"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".login.Activity_Login_Register"
-            android:exported="true">
-
-        </activity>
-
-        <!-- 속성 android:exported 의미
-             다른 앱이나 시스템에서 해당 서비스를 access 할 수 있음을 의미.
-             해당 값이 false일 경우, 오로지 앱내부에서만 실행 가능함.
-             Kakao 앱 또는 앱 내장 브라우저 인증 방식으로 카카오 계정 로그인 후 다시 앱으로 돌아올때 사용되는 부분으로
-             해당 코드가 누락될 경우 로그인 후 앱으로 돌아지 않게 된다.
-        -->
-
-        <activity android:name=".home.Activity_Home" />
-
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
-                <data
-                    android:host="oauth"
-                    android:scheme="kakaoa9ccf9d78e7ad93cfcaa07604daa04f7" />
-            </intent-filter>
-        </activity>
-
-
-        <!--        <activity android:name=".AuthCodeHandlerActivity">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.VIEW" />-->
-        <!--                <category android:name="android.intent.category.DEFAULT" />-->
-        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-        <!--                &lt;!&ndash; Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ &ndash;&gt;-->
-        <!--                <data android:host="oauth" android:scheme="kakaoa9ccf9d78e7ad93cfcaa07604daa04f7" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
-
-        <!-- 네이티브 앱 키 설정 -->
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
 
     </application>
 
