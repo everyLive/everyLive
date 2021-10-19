@@ -188,10 +188,10 @@ public class Activity_Register extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-            });
+        });
 
 
-            Spinner daySpinner = (Spinner)findViewById(R.id.spinner_day);
+        Spinner daySpinner = (Spinner)findViewById(R.id.spinner_day);
         // 문자열 배열과 기본 스피너 레이아웃을 사용하여 ArrayAdapter 만들기
         ArrayAdapter dayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.date_day, android.R.layout.simple_spinner_item);
@@ -243,14 +243,14 @@ public class Activity_Register extends AppCompatActivity {
 
         // 닉네임 중복체크 버튼 클릭하면 HTTP통신해서 서버에 같은 닉네임이 있나 체크한다.
         btn_nicknamecheck.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                 nickName = nickname.getText().toString();
-                 sendDataForNicknamecheck();
+                nickName = nickname.getText().toString();
+                sendDataForNicknamecheck();
 
-                 }
-                 });
+            }
+        });
 
 
 
@@ -325,65 +325,65 @@ public class Activity_Register extends AppCompatActivity {
 
 
 
-            //안드로이드에서 보낼 데이터를 받을 php 서버 주소
-            String serverUrl=IP_ADDRESS + "/everyLive/login_register/nicknamecheck.php";
+        //안드로이드에서 보낼 데이터를 받을 php 서버 주소
+        String serverUrl=IP_ADDRESS + "/everyLive/login_register/nicknamecheck.php";
 //        http://3.36.159.193/everyLive/login_registernicknamecheck.php
 
-            //파일 전송 요청 객체 생성[결과를 String으로 받음]
-            SimpleMultiPartRequest smpr= new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
-    @Override
-    public void onResponse(String response) {
+        //파일 전송 요청 객체 생성[결과를 String으로 받음]
+        SimpleMultiPartRequest smpr= new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 //            new AlertDialog.Builder(sss.this).setMessage("응답:"+response).create().show();
 //            Toast.makeText(Activity_Register.this,response, Toast.LENGTH_LONG).show();
-        Log.d(TAG, "sendDataForNicknamecheck(): "+response);
+                Log.d(TAG, "sendDataForNicknamecheck(): "+response);
 
-            // 값이 1 이면 중복, 0 이면 중복x
-        if(response.equals("1")){
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Register.this);
-            builder.setTitle("회원가입").setMessage("닉네임이 중복되었습니다\n새로 입력해 주세요.");
-            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    nickname.setText(null); // 입력한 닉네임 지움. 중복되었으니까.
+                // 값이 1 이면 중복, 0 이면 중복x
+                if(response.equals("1")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Register.this);
+                    builder.setTitle("회원가입").setMessage("닉네임이 중복되었습니다\n새로 입력해 주세요.");
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            nickname.setText(null); // 입력한 닉네임 지움. 중복되었으니까.
 
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show(); // 다이얼로그 보여주기
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Register.this);
+                    builder.setTitle("회원가입").setMessage("사용 가능한 닉네임 입니다");
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            nickname.setEnabled(false); // 사용가능한 닉네임이면 수정 불가 처리
+                            checkID=true;
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show(); // 다이얼로그 보여주기
                 }
-            });
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show(); // 다이얼로그 보여주기
-        }else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Register.this);
-            builder.setTitle("회원가입").setMessage("사용 가능한 닉네임 입니다");
-            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    nickname.setEnabled(false); // 사용가능한 닉네임이면 수정 불가 처리
-                    checkID=true;
-                }
-            });
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show(); // 다이얼로그 보여주기
-        }
 
 
             }
-            }, new Response.ErrorListener() {
-    @Override
-    public void onErrorResponse(VolleyError error) {
-    //                Toast.makeText(Createband_2.this, "ERROR", Toast.LENGTH_SHORT).show();
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //                Toast.makeText(Createband_2.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
-            });
+        });
 
-            //요청 객체에 보낼 데이터를 추가
-            smpr.addStringParam("nickName", nickName);
+        //요청 객체에 보낼 데이터를 추가
+        smpr.addStringParam("nickName", nickName);
 
-            //요청객체를 서버로 보낼 우체통 같은 객체 생성
-            RequestQueue requestQueue= Volley.newRequestQueue(this);
-            requestQueue.add(smpr);
+        //요청객체를 서버로 보낼 우체통 같은 객체 생성
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(smpr);
 
-            }
+    }
 
 }

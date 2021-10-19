@@ -134,25 +134,26 @@ public class Activity_Login extends AppCompatActivity {
         });
 
 
-        Button DeleteToken = (Button)findViewById(R.id.DeleteToken);
-        // 네이버 연동해제(클라이언트 및 서버의 토큰 사라짐)
-        DeleteToken .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DeleteTokenTask().execute();
-                Toast.makeText(Activity_Login.this, "연동해제 되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Button DeleteToken = (Button)findViewById(R.id.DeleteToken);
+//        // 네이버 연동해제(클라이언트 및 서버의 토큰 사라짐)
+//        DeleteToken .setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new DeleteTokenTask().execute();
+//                Toast.makeText(Activity_Login.this, "연동해제 되었습니다.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        Button logoutnaver = (Button)findViewById(R.id.logoutnaver);
+//        // 네이버 로그아웃(클라이언트에 저장된 토큰 사라짐
+//        logoutnaver .setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mOAuthLoginModule.logout(mContext);
+//                Toast.makeText(Activity_Login.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        Button logoutnaver = (Button)findViewById(R.id.logoutnaver);
-        // 네이버 로그아웃(클라이언트에 저장된 토큰 사라짐
-        logoutnaver .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOAuthLoginModule.logout(mContext);
-                Toast.makeText(Activity_Login.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
         /**
          * 네이버 아이디로 로그인
          * */
@@ -378,7 +379,7 @@ public class Activity_Login extends AppCompatActivity {
                     kakaogender = "M";
                 }else if(gender.toString().equals("FEMALE")){
                     kakaogender = "F";
-                 }
+                }
 
                 // 카카오 로그인할때 체크한 데이터를 Activity_Register에 인텐트로 넘긴다
                 Intent intent = new Intent(getApplicationContext(), Activity_Register.class);
