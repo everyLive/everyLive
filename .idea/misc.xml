@@ -6,10 +6,12 @@
         <entry key="..\:/Users/82108/Desktop/everyLive/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/82108/Desktop/everyLive/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive/app/src/main/res/layout/layout.xml" value="0.22" />
+        <entry key="..\:/Users/82108/Desktop/everyLive2/app/src/main/res/layout/activity_login_agree.xml" value="0.33" />
+        <entry key="..\:/Users/82108/Desktop/everyLive2/app/src/main/res/layout/activity_login_register.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

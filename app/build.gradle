@@ -39,4 +39,11 @@ dependencies {
 
     // 카카오 로그인
     implementation "com.kakao.sdk:v2-user:2.4.2"
+    //네이버 로그인
+    implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'
+
+    // 글라이드 이미지 라이브러리
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    // volley+ HTTP통신 라이브러리
+    implementation 'dev.dworks.libs:volleyplus:+'
 }

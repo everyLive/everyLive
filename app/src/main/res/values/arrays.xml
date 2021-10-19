@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="date_month">
+        <item>1 월</item>
+        <item>2 월</item>
+        <item>3 월</item>
+        <item>4 월</item>
+        <item>5 월</item>
+        <item>6 월</item>
+        <item>7 월</item>
+        <item>8 월</item>
+        <item>9 월</item>
+        <item>10 월</item>
+        <item>11 월</item>
+        <item>12 월</item>
+    </string-array>
+
+    <string-array name="date_day">
+        <item>1 일</item>
+        <item>2 일</item>
+        <item>3 일</item>
+        <item>4 일</item>
+        <item>5 일</item>
+        <item>6 일</item>
+        <item>7 일</item>
+        <item>8 일</item>
+        <item>9 일</item>
+        <item>10 일</item>
+        <item>11 일</item>
+        <item>12 일</item>
+        <item>13 일</item>
+        <item>14 일</item>
+        <item>15 일</item>
+        <item>16 일</item>
+        <item>17 일</item>
+        <item>18 일</item>
+        <item>19 일</item>
+        <item>20 일</item>
+        <item>21 일</item>
+        <item>22 일</item>
+        <item>23 일</item>
+        <item>24 일</item>
+        <item>25 일</item>
+        <item>26 일</item>
+        <item>27 일</item>
+        <item>28 일</item>
+        <item>29 일</item>
+        <item>30 일</item>
+        <item>31 일</item>
+    </string-array>
+
+
+</resources>
