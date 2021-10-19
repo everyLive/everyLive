@@ -19,15 +19,18 @@
 
 
 
-        <activity android:name=".home.Activity_Home"/>
-
-        <activity android:name=".login.Activity_Login"
+        <activity android:name=".home.Activity_Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".login.Activity_Login"
+            android:exported="true">
+
         </activity>
 
         <!-- 속성 android:exported 의미

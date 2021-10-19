@@ -44,6 +44,6 @@
         app:srcCompat="@drawable/ic_baseline_person_24"
         android:layout_marginRight="16dp"
         app:layout_anchor="@id/bottomAppBar"
-        app:layout_anchorGravity="right|center_vertical"/>
+        app:layout_anchorGravity="right|center_vertical" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

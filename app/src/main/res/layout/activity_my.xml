@@ -16,6 +16,7 @@
             android:id="@+id/profileIMG"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:padding="5dp"
             />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,9 +149,9 @@
             android:layout_marginRight="10dp"/>
 
         <TextView
+            android:id="@+id/holdingCoins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="2"
             android:fontFamily="@font/nanum_neuris"
             android:textStyle="bold"
             android:textSize="20dp"
@@ -216,6 +217,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
