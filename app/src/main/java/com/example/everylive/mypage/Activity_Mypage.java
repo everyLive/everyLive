@@ -118,8 +118,13 @@ public class Activity_Mypage extends AppCompatActivity {
                         cnt_fan.setText(Integer.toString(cnt_fan_server));
                         cnt_star.setText(Integer.toString(cnt_star_server));
 
-                        profileMSG1.setText(introduce);
-                        profileMSG2.setText(introduce);
+                        if(introduce.equals("null")){
+                            profileMSG1.setText("프로필 메시지를 작성해주세요 :>");
+                            profileMSG2.setText("프로필 메시지를 작성해주세요 :>");
+                        }else{
+                            profileMSG1.setText(introduce);
+                            profileMSG2.setText(introduce);
+                        }
 
                         Glide.with(Activity_Mypage.this)
                                 .load(profileIMG_server)

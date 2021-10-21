@@ -529,9 +529,10 @@ public class Activity_Mypage_Modify extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         String selected_month = spinner_month.getSelectedItem().toString();
-                        selected_month = String.valueOf(selected_month.charAt(0)); // 월 떼고 숫자만
+                        selected_month = selected_month.replaceAll("월", "").trim(); // 뒤에 붙은 문자 ""로 대체 + 생긴 공백 없애기.
+
                         String selected_day = spinner_day.getSelectedItem().toString();
-                        selected_day = String.valueOf(selected_day.charAt(0)); // 일 떼고 숫자만
+                        selected_day = selected_day.replaceAll("일", "").trim();
 
                         if(Integer.parseInt(selected_month) < 10){
                             selected_month = "0"+selected_month;

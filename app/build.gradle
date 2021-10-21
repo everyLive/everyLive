@@ -46,10 +46,4 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // volley+ HTTP통신 라이브러리
     implementation 'dev.dworks.libs:volleyplus:+'
-    // circleImaageView
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-    // 룰렛 게임
-    //implementation 'com.github.mmoamenn:LuckyWheel_Android:0.3.0'
-
 }

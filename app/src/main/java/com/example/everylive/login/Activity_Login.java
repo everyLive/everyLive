@@ -1,24 +1,44 @@
 package com.example.everylive.login;
+import android.Manifest;
+import android.content.ClipData;
+import android.text.TextUtils;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.everylive.R;
+import com.example.everylive.home.Activity_Home;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
@@ -27,6 +47,7 @@ import com.kakao.sdk.user.model.Gender;
 import com.kakao.sdk.user.model.Profile;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
+import com.nhn.android.naverlogin.data.OAuthLoginState;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,8 +65,12 @@ public class Activity_Login extends AppCompatActivity {
     OAuthLogin mOAuthLoginModule;
     Context mContext;
 
-    String snsType, nickName, profileIMG, birthday, gender, kakaogender;
+    String snsType, nickName, profileIMG, birthday, gender, kakaogender, uniqueID;
 
+    String imgPath;
+
+    // 서버 주소
+    private static String IP_ADDRESS = "http://3.36.159.193";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,8 +79,6 @@ public class Activity_Login extends AppCompatActivity {
 
         btn_KakaoLogin = findViewById(R.id.btn_KakaoLogin);
         btn_NaverLogin = findViewById(R.id.btn_NaverLogin);
-
-
 
         /**
          * @author 김수미
@@ -71,9 +94,6 @@ public class Activity_Login extends AppCompatActivity {
                 signInKakao();
             }
         });
-
-
-
 
         /**
          * @author 김태희
@@ -95,78 +115,72 @@ public class Activity_Login extends AppCompatActivity {
                 );
 
 
+                String accesstoken = mOAuthLoginModule.getAccessToken(getApplicationContext());
+                String state = mOAuthLoginModule.getState(getApplicationContext()).toString();
 
-                // 로그인창에서 로그인 완료되거나 뒤로가기 눌러서 취소되는 이벤트 받을 핸들러
-                @SuppressLint("HandlerLeak")
-                OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
-                    @Override
-                    public void run(boolean success) {
-                        if (success) {
-                            String accessToken = mOAuthLoginModule.getAccessToken(mContext);
-                            String refreshToken = mOAuthLoginModule.getRefreshToken(mContext);
-                            long expiresAt = mOAuthLoginModule.getExpiresAt(mContext);
-                            String tokenType = mOAuthLoginModule.getTokenType(mContext);
+                if(accesstoken!=null){
 
-                            Log.i("LoginData","accessToken : "+ accessToken);
-                            Log.i("LoginData","refreshToken : "+ refreshToken);
-                            Log.i("LoginData","expiresAt : "+ expiresAt);
-                            Log.i("LoginData","tokenType : "+ tokenType);
+                    Log.d("getState", state); // OK. 접근 토큰이 있는 상태.
+                    Log.d("getAccessToken", accesstoken);
+                    Log.d(TAG, "ACCESS_TOKEN 존재하므로 회원가입 거치지 않고 바로 홈화면이동");
+                    Intent intent = new Intent(getApplicationContext(), Activity_Home.class);
+                    startActivity(intent);
+                    finish(); // 현재 액티비티 종료
 
-                            new RequestApiTask(mContext, mOAuthLoginModule).execute();
+                }else{
+                    Log.d("getAccessToken", "null");
+                    Log.d(TAG, "ACCESS_TOKEN 존재하지 않으므로 sns 로그인후 회원가입");
+                    Log.d("getState", state); // NEED_LOGIN. 로그인이 필요한 상태. 접근 토큰(access token)과 갱신 토큰(refresh token)이 모두 없습니다.
+
+                    // 로그인창에서 로그인 완료되거나 뒤로가기 눌러서 취소되는 이벤트 받을 핸들러
+                    @SuppressLint("HandlerLeak")
+                    OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
+                        @Override
+                        public void run(boolean success) {
+                            if (success) {
+                                String accessToken = mOAuthLoginModule.getAccessToken(mContext);
+                                String refreshToken = mOAuthLoginModule.getRefreshToken(mContext);
+                                long expiresAt = mOAuthLoginModule.getExpiresAt(mContext);
+                                String tokenType = mOAuthLoginModule.getTokenType(mContext);
+
+                                Log.i("LoginData", "accessToken : " + accessToken);
+                                Log.i("LoginData", "refreshToken : " + refreshToken);
+                                Log.i("LoginData", "expiresAt : " + expiresAt);
+                                Log.i("LoginData", "tokenType : " + tokenType);
+
+                                new RequestApiTask(mContext, mOAuthLoginModule).execute();
 
 
-
-
-                        } else {
-                            String errorCode = mOAuthLoginModule
-                                    .getLastErrorCode(mContext).getCode();
-                            String errorDesc = mOAuthLoginModule.getLastErrorDesc(mContext);
-                            Toast.makeText(getApplicationContext(), "errorCode:" + errorCode
-                                    + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
+                            } else {
+                                String errorCode = mOAuthLoginModule
+                                        .getLastErrorCode(mContext).getCode();
+                                String errorDesc = mOAuthLoginModule.getLastErrorDesc(mContext);
+                                Toast.makeText(getApplicationContext(), "errorCode:" + errorCode
+                                        + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     };
-                };
 
-                // 로그인 시도
-                mOAuthLoginModule.startOauthLoginActivity(Activity_Login.this, mOAuthLoginHandler);
+                    // 로그인 시도
+                    mOAuthLoginModule.startOauthLoginActivity(Activity_Login.this, mOAuthLoginHandler);
 
+                }
             }
         });
 
+    }
 
-//        Button DeleteToken = (Button)findViewById(R.id.DeleteToken);
-//        // 네이버 연동해제(클라이언트 및 서버의 토큰 사라짐)
-//        DeleteToken .setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new DeleteTokenTask().execute();
-//                Toast.makeText(Activity_Login.this, "연동해제 되었습니다.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        Button logoutnaver = (Button)findViewById(R.id.logoutnaver);
-//        // 네이버 로그아웃(클라이언트에 저장된 토큰 사라짐
-//        logoutnaver .setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mOAuthLoginModule.logout(mContext);
-//                Toast.makeText(Activity_Login.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        /**
-         * 네이버 아이디로 로그인
-         * */
-
-
-    } // 온크리에이트
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        snsType=null;
+    }
 
     /**
      * 네이버 아이디로 로그인
      * */
     // 네이버 로그인 토큰 연동해제
-    private class DeleteTokenTask extends AsyncTask<Void, Void, Void> {
+    public class DeleteTokenTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             boolean isSuccessDeleteToken = mOAuthLoginModule.logoutAndDeleteToken(mContext);
@@ -208,49 +222,28 @@ public class Activity_Login extends AppCompatActivity {
                 JSONObject loginResult = new JSONObject(content);
                 if (loginResult.getString("resultcode").equals("00")){
                     JSONObject response = loginResult.getJSONObject("response");
-
+                    uniqueID = response.getString("id");
 
                     if(response.has("nickname")) {
                         nickName = response.getString("nickname");
                         Log.d("사용자정보-닉네임", nickName);
-
-
                     }
                     if(response.has("profile_image")) {
                         profileIMG = response.getString("profile_image");
                         Log.d("사용자정보-프로필", profileIMG);
-
-
                     }
                     if(response.has("gender")) {
                         gender = response.getString("gender");
                         Log.d("사용자정보-성별", gender);
-
-
                     }
                     if(response.has("birthday")) {
                         birthday = response.getString("birthday");
                         Log.d("사용자정보-생일", birthday);
-
-
                     }
-//                    Toast.makeText(mContext, "email : "+email +" name : "+name+" birthyear : "+birthyear, Toast.LENGTH_LONG).show();
 
-                    // 네이버 로그인할때 체크한 데이터를 Activity_Register에 인텐트로 넘긴다
-                    Intent intent = new Intent(getApplicationContext(), Activity_Register.class);
-
-                    intent.putExtra("birthday",birthday);
-                    intent.putExtra("gender",gender);
-                    intent.putExtra("profileimgURL",profileIMG);
-                    intent.putExtra("nickName",nickName);
-                    intent.putExtra("snsType","naver");
-                    startActivity(intent);
-//                    finish();
-
-
-
-
-
+                    snsType = "naver";
+                    // 고유식별자 있는지 체크. 있으면 바로 홈화면. 없으면 회원가입화면.
+                    sendDataForUniqueIDcheck();
 
                 }
 
@@ -263,9 +256,7 @@ public class Activity_Login extends AppCompatActivity {
      * 네이버 아이디로 로그인
      * */
 
-
-
-    // 키해시 얻기
+    // 카카오 키해시 얻기
     private String getKeyHash(){
         try{
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -285,7 +276,7 @@ public class Activity_Login extends AppCompatActivity {
         return null;
     }
 
-    // 사용자 정보 요청
+    // 카카오 사용자 정보 요청
     private void requestMe(){
         Log.d("requestMe ", "함수안");
         UserApiClient.getInstance().me((user, meError) -> {
@@ -341,12 +332,11 @@ public class Activity_Login extends AppCompatActivity {
     Function2<OAuthToken, Throwable, Unit> callback = (oAuthToken, throwable) -> {
         if (oAuthToken != null) {
             Log.i("TAG_KAKAO", "성공");
-//            Toast.makeText(this, "카카오 로그인이 정상적으로 수행됐습니다.", Toast.LENGTH_SHORT).show();
+
             updateKakaoLogin();
         }
         if (throwable != null) {
             Log.i("TAG_KAKAO", "실패");
-            Toast.makeText(this, "카카오 로그인을 실패했습니다.", Toast.LENGTH_SHORT).show();
             Log.e("signInKakao()", throwable.getLocalizedMessage());
         }
         return null;
@@ -363,37 +353,39 @@ public class Activity_Login extends AppCompatActivity {
                 Profile profile = kakaoAccount.getProfile();
 
                 Log.d(TAG, kakaoAccount.toString());
-                String nickName = profile.getNickname();
-                String profileIMG = profile.getProfileImageUrl(); // 프로필 사진 640*640
+                nickName = profile.getNickname();
+                profileIMG = profile.getProfileImageUrl(); // 프로필 사진 640*640
                 String thumbnail_image = profile.getThumbnailImageUrl(); // 프로필 사진 110*110
 
-                String birthday = kakaoAccount.getBirthday();
-                Gender gender = kakaoAccount.getGender();
+                birthday = kakaoAccount.getBirthday();
+                Gender gender2 = kakaoAccount.getGender();
+                long uniquID = user.getId();
 
-                Log.i("사용자정보-닉네임", nickName);
-                Log.i("사용자정보-프로필", profileIMG);
-                Log.i("사용자정보-생일", birthday);
-                Log.i("사용자정보-성별", gender.toString());
+                uniqueID = String.valueOf(uniquID);
+                snsType = "kakao";
 
-                if(gender.toString().equals("MALE")){
-                    kakaogender = "M";
-                }else if(gender.toString().equals("FEMALE")){
-                    kakaogender = "F";
+                Log.i("사용자정보-고유번호", String.valueOf(uniquID));
+                if(nickName!=null){
+                    Log.i("사용자정보-닉네임", nickName);
+                }
+                if(profileIMG!=null){
+                    Log.i("사용자정보-프로필", profileIMG);
+                }
+                if(birthday!=null){
+                    Log.i("사용자정보-생일", birthday);
+                }
+                if(gender2!=null) {
+                    Log.i("사용자정보-성별", gender2.toString());
+                    if(gender2.toString().equals("MALE")){
+                        gender = "M";
+                    }else if(gender2.toString().equals("FEMALE")){
+                        gender = "F";
+                    }
+
                 }
 
-                // 카카오 로그인할때 체크한 데이터를 Activity_Register에 인텐트로 넘긴다
-                Intent intent = new Intent(getApplicationContext(), Activity_Register.class);
-
-                intent.putExtra("birthday",birthday);
-                intent.putExtra("gender",kakaogender);
-                intent.putExtra("profileimgURL",profileIMG);
-                intent.putExtra("nickName",nickName);
-                intent.putExtra("snsType","kakao");
-                startActivity(intent);
-//                finish();
-
-
-
+                // 고유식별자 있는지 체크. 있으면 바로 홈화면. 없으면 회원가입화면.
+                sendDataForUniqueIDcheck();
 
                 /** DB에서 있는 값인지 체크하고, 없으면 회원가입. 생일과 성별이 null인지 체크하고, 없으면 값을 받는 방식으로? */
             } else {   // 로그인 실패
@@ -403,13 +395,107 @@ public class Activity_Login extends AppCompatActivity {
         });
     }
 
-    // 로그아웃 처리 (카카오톡)
-//    UserApiClient.getInstance().logout(error -> {
-//        return null;
-//    });
+    // sns 고유식별자 체크
+    public void sendDataForUniqueIDcheck() {
+
+        String serverUrl=IP_ADDRESS + "/everyLive/login_register/uniqueIDcheck.php";
+
+        //파일 전송 요청 객체 생성[결과를 String으로 받음]
+        SimpleMultiPartRequest smpr= new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
+                        "userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.d("SimpleMultiPartRequest", response);
+
+                    if(jsonObject.getString("success").equals("true")) {
+                        editor.putString("idx_user", jsonObject.getString("idx_user"));
+                        editor.putString("snsType", jsonObject.getString("snsType"));
+                        editor.putString("nickName", jsonObject.getString("nickName"));
+                        editor.putString("profileIMG", jsonObject.getString("profileIMG"));
+                        editor.putString("gender", jsonObject.getString("gender"));
+                        editor.putString("birthday", jsonObject.getString("birthday"));
+                        editor.putString("uniqueID", jsonObject.getString("uniqueID"));
+                        editor.apply(); // 있어야 값 저장,삭제됨
+
+                        Intent intent2 = new Intent(getApplicationContext(), Activity_Home.class);
+                        startActivity(intent2);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(getApplicationContext(), Activity_Register.class);
+
+                        intent.putExtra("birthday",birthday);
+                        intent.putExtra("profileimgURL",profileIMG);
+                        intent.putExtra("nickName",nickName);
+                        intent.putExtra("snsType",snsType);
+                        intent.putExtra("uniqueID",uniqueID);
+                        intent.putExtra("birthday",birthday);
+                        intent.putExtra("gender",gender);
+                        startActivity(intent);
+                    }
+
+                    Log.d("SimpleMultiPartRequest", response);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //                Toast.makeText(Createband_2.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //요청 객체에 보낼 데이터를 추가
+        smpr.addStringParam("uniqueID", uniqueID);
+
+        //요청객체를 서버로 보낼 우체통 같은 객체 생성
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(smpr);
+
+    }
+
+    // 서버에 이미지 올라가는지 확인하기 위해 잠깐 사용
+    public void sendData() {
+        //안드로이드에서 보낼 데이터를 받을 php 서버 주소
+        String serverUrl=IP_ADDRESS + "/everyLive/login_register/fileup.php";
+
+        //파일 전송 요청 객체 생성[결과를 String으로 받음]
+        SimpleMultiPartRequest smpr= new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        //요청 객체에 보낼 데이터를 추가
+        //이미지 파일 추가
+        smpr.addFile("imgsss", imgPath);
+
+        //요청객체를 서버로 보낼 우체통 같은 객체 생성
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(smpr);
+
+    }
 
 
 
 
 
 }
+
+
