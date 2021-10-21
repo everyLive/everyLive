@@ -48,4 +48,8 @@ dependencies {
     implementation 'dev.dworks.libs:volleyplus:+'
     // circleImaageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // 룰렛 게임
+    //implementation 'com.github.mmoamenn:LuckyWheel_Android:0.3.0'
+
 }

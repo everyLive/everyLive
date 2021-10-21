@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topArea"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:text="프로필 편집"
+            android:gravity="center"
+            android:fontFamily="@font/nanum_neuris"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divideLine"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/Reply_Blue600_light"
+        />
+
+    <!-- 프로필 사진 수정하기 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfileIMG1"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/ic_baseline_person_24"
+            app:civ_border_overlay="true"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/Reply_Blue600_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/userProfileIMG2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_circle"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userProfileIMG1"
+            app:layout_constraintEnd_toEndOf="@+id/userProfileIMG1" />
+
+        <ImageView
+            android:id="@+id/userProfileIMG3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:layout_constraintBottom_toBottomOf="@+id/userProfileIMG2"
+            app:layout_constraintEnd_toEndOf="@+id/userProfileIMG2"
+            app:layout_constraintStart_toStartOf="@+id/userProfileIMG2"
+            app:layout_constraintTop_toTopOf="@+id/userProfileIMG2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 닉네임 -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanum_neuris"
+        android:text="닉네임"
+        android:textColor="@color/Reply_Blue800"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_neuris"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/Reply_Blue600_light"/>
+
+        <Button
+            android:id="@+id/btn_change_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/Reply_Blue800"
+            android:text="변경"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 프로필 메시지 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/nanum_neuris"
+            android:text="프로필 메시지"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cnt_text"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/100"
+            android:textColor="@color/Reply_Blue600_light"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/profileMSG"
+        android:layout_width="350dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:maxLength="100"
+        android:padding="10dp"
+        android:gravity="top"
+        android:fontFamily="@font/nanum_neuris"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:background="@drawable/edittext_rounded_corner_rectangle"/>
+
+    <Button
+        android:id="@+id/btn_profile_msg_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="282dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/Reply_Blue800"
+        android:text="저장"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+<!-- ID / 성별 / 생일 시작 -->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:background="@color/Reply_Blue600_light">
+
+<!-- ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:text="ID"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_set_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
+<!-- 성별 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:text="성별"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_set_gender"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/btn_change_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:text="변경"
+                android:textColor="@color/Reply_Blue800"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+<!-- 생일 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:text="생일"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_set_birthday"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/btn_change_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:text="변경"
+                android:textColor="@color/Reply_Blue800"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

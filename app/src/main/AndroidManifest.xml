@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.everylive">
 
-    <!-- 인터넷 권한 추가r -->
+    <!-- 인터넷 권한 추가 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
 
@@ -16,8 +20,6 @@
         android:theme="@style/Theme" >
         <!--        volleyplus 라이브러리 사용시 필요-->
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-
-
 
         <activity android:name=".home.Activity_Home"
             android:exported="true">
@@ -44,9 +46,8 @@
             android:exported="true"/>
 
         <activity android:name=".mypage.Activity_My"/>
-
-
-
+        <activity android:name=".mypage.Activity_Mypage"/>
+        <activity android:name=".mypage.Activity_Mypage_Modify"/>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -74,6 +75,17 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
 
+        <!-- fileProvider을 통해 생성한 파일을 앱 내외부로 공유할 수 있도록 선언 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.everylive.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!--파일경로 xml 생성-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
 
     </application>
 

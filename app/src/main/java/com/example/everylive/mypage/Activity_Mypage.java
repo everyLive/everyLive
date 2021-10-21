@@ -5,11 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,45 +18,72 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.everylive.R;
 import com.example.everylive.mypage.Request.RequestGetUseInfo;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Type;
+import org.w3c.dom.Text;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Activity_My extends AppCompatActivity {
+public class Activity_Mypage extends AppCompatActivity {
 
-    CircleImageView profileIMG;
-    TextView userNickName, userID, cnt_fan, cnt_star;
-    ConstraintLayout go_to_activityMypage;
+    ImageView btn_back;
+    TextView nickname, btn_edit_userInfo, cnt_fan, cnt_star;
+    CircleImageView userProfile;
+
+    TextView profileMSG1, profileMSG2; // 1: 작은박스, 2: 큰박스
+    CheckBox checkbox_arrow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.activity_mypage);
 
-        profileIMG = findViewById(R.id.profileIMG);
-        userNickName = findViewById(R.id.userNickName);
-        userID = findViewById(R.id.userID);
+        btn_back = findViewById(R.id.btn_back);
+        nickname = findViewById(R.id.nickname);
+        btn_edit_userInfo = findViewById(R.id.btn_edit_userInfo);
         cnt_fan = findViewById(R.id.cnt_fan);
         cnt_star = findViewById(R.id.cnt_star);
-        go_to_activityMypage = findViewById(R.id.go_to_activityMypage);
+        userProfile = findViewById(R.id.userProfileIMG);
+        profileMSG1 = findViewById(R.id.profileMSG1);
+        profileMSG2 = findViewById(R.id.profileMSG2);
+        checkbox_arrow = findViewById(R.id.checkbox_arrow);
 
-        // 레이아웃 영역 누르면, activity_mypage로 이동하기.
-        go_to_activityMypage.setOnClickListener(new View.OnClickListener() {
+        // 뒤로가기 버튼
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_My.this, Activity_Mypage.class);
+                onBackPressed();
+            }
+        });
+
+        // userInfo 수정하는 화면으로 이동
+        btn_edit_userInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Mypage.this, Activity_Mypage_Modify.class);
                 startActivity(intent);
+            }
+        });
+
+        // checkbox_arrow로 열고 닫고
+        checkbox_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkbox_arrow.isChecked()){ // 누르면, 큰박스 보이기
+                    profileMSG1.setVisibility(View.INVISIBLE);
+                    profileMSG2.setVisibility(View.VISIBLE);
+                }else{
+                    profileMSG1.setVisibility(View.VISIBLE);
+                    profileMSG2.setVisibility(View.GONE);
+                }
             }
         });
     }
 
+    // 액티비티가 가려졌다 다시 보였을 때, 정보 수정하고 온 것일 수도 있음.
+    // userInfo 가져오는 부분 생명주기 고려해서 onStart()에 배치.
     @Override
     protected void onStart() {
         super.onStart();
@@ -63,7 +91,6 @@ public class Activity_My extends AppCompatActivity {
         // 쉐어드에서 idx_user 값을 가져와서 DB에서 정보 가져오기.
         SharedPreferences sharedPreferences = this.getSharedPreferences("userInfo", MODE_PRIVATE);
         String idx_user = sharedPreferences.getString("idx_user",null);
-        System.out.println(idx_user);
         getUserInfo(idx_user);
     }
 
@@ -85,17 +112,20 @@ public class Activity_My extends AppCompatActivity {
                         int cnt_fan_server = jsonObject.getInt("cnt_fan");
                         int cnt_star_server = jsonObject.getInt("cnt_star");
                         String profileIMG_server = jsonObject.getString("profileIMG");
+                        String introduce = jsonObject.getString("introduce");
 
-                        userNickName.setText(nickName_server);
-                        userID.setText(userID_server);
+                        nickname.setText(nickName_server);
                         cnt_fan.setText(Integer.toString(cnt_fan_server));
                         cnt_star.setText(Integer.toString(cnt_star_server));
 
-                        Glide.with(Activity_My.this)
+                        profileMSG1.setText(introduce);
+                        profileMSG2.setText(introduce);
+
+                        Glide.with(Activity_Mypage.this)
                                 .load(profileIMG_server)
                                 .override(400, 400)
                                 .centerCrop()
-                                .into(profileIMG);
+                                .into(userProfile);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -104,8 +134,7 @@ public class Activity_My extends AppCompatActivity {
         };
 
         RequestGetUseInfo requestGetUseInfo = new RequestGetUseInfo(idx_user, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(Activity_My.this);
+        RequestQueue queue = Volley.newRequestQueue(Activity_Mypage.this);
         queue.add(requestGetUseInfo);
-
     }
 }
