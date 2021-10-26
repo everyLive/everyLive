@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/Reply_Orange">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fanboard_userImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/edittext_rounded_corner_rectangle_fill"
+            app:layout_constraintBottom_toBottomOf="@+id/fanboardMSG"
+            app:layout_constraintStart_toStartOf="@+id/fanboardMSG"
+            app:layout_constraintTop_toTopOf="@+id/fanboardMSG"
+            app:layout_constraintVertical_bias="0.466" />
+
+        <EditText
+            android:id="@+id/fanboardMSG"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            android:fontFamily="@font/nanum_neuris"
+            android:gravity="top"
+            android:maxLength="100"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="50dp"
+            android:paddingLeft="80dp"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_fanboardMSG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_baseline_create_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fanboardMSG"
+            app:layout_constraintTop_toTopOf="@+id/fanboardMSG" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_fanboard"
+        android:layout_width="350dp"
+        android:layout_height="573dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        />
+
+</LinearLayout>

@@ -229,6 +229,11 @@ public class Activity_My extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_My.this, Activity_Mypage.class);
+
+                SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                String idx_user = sharedPreferences.getString("idx_user",null);
+                intent.putExtra("page_owner", idx_user);
+
                 startActivity(intent);
             }
         });
@@ -281,7 +286,7 @@ public class Activity_My extends AppCompatActivity {
             }
         };
 
-        RequestGetUseInfo requestGetUseInfo = new RequestGetUseInfo(idx_user, responseListener);
+        RequestGetUseInfo requestGetUseInfo = new RequestGetUseInfo(idx_user, "null", responseListener);
         RequestQueue queue = Volley.newRequestQueue(Activity_My.this);
         queue.add(requestGetUseInfo);
     }

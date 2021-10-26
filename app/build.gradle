@@ -26,6 +26,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // 뷰페이저2
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -46,4 +51,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // volley+ HTTP통신 라이브러리
     implementation 'dev.dworks.libs:volleyplus:+'
+
+    // circle img view
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    // 뷰페이저 2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }

@@ -11,4 +11,14 @@
         <item name="android:textCursorDrawable">@color/Reply_Blue800</item>
     </style>
 
+    <style name="Theme2" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/Reply_Blue700</item>
+        <item name="colorSecondary">@color/Reply_Orange</item>
+        <item name="colorControlActivated">@color/Reply_Blue800</item>
+        <item name="colorControlNormal">@color/Reply_Blue600_light</item>
+        <item name="android:textSelectHandle">@color/Reply_Blue800</item>
+        <item name="android:textCursorDrawable">@color/Reply_Blue800</item>
+    </style>
+
 </resources>

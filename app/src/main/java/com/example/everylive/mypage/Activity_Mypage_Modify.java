@@ -252,7 +252,7 @@ public class Activity_Mypage_Modify extends AppCompatActivity {
             }
         };
 
-        RequestGetUseInfo requestGetUseInfo = new RequestGetUseInfo(idx_user, responseListener);
+        RequestGetUseInfo requestGetUseInfo = new RequestGetUseInfo(idx_user, "null", responseListener);
         RequestQueue queue = Volley.newRequestQueue(Activity_Mypage_Modify.this);
         queue.add(requestGetUseInfo);
     }

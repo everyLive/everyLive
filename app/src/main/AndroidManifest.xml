@@ -21,17 +21,20 @@
         <!--        volleyplus 라이브러리 사용시 필요-->
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-
-
-        <activity android:name=".home.Activity_Home"/>
-
-        <activity android:name=".login.Activity_Login"
-            android:exported="true">
+        <activity android:name=".home.Activity_Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".home.Activity_Search"
+            android:theme="@style/Theme2"/>
+
+        <activity android:name=".login.Activity_Login"
+            android:exported="true">
+
         </activity>
 
         <!-- 속성 android:exported 의미
@@ -44,7 +47,9 @@
         <activity android:name=".login.Activity_Register"
             android:exported="true"/>
 
-        <activity android:name=".mypage.Activity_My"/>
+        <activity android:name=".mypage.Activity_My">
+
+        </activity>
         <activity android:name=".mypage.Activity_Mypage"/>
         <activity android:name=".mypage.Activity_Mypage_Modify"/>
 

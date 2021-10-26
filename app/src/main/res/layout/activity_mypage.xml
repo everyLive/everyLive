@@ -1,205 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <LinearLayout
-        android:id="@+id/topArea"
+
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
 
-        <ImageView
-            android:id="@+id/btn_back"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:layout_marginLeft="10dp"/>
-
-        <TextView
-            android:id="@+id/nickname"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:text="닉네임"
-            android:gravity="center"
-            android:fontFamily="@font/nanum_neuris"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            />
-
-        <TextView
-            android:id="@+id/btn_edit_userInfo"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:text="편집"
-            android:gravity="center"
-            android:fontFamily="@font/nanum_neuris"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divideLine"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/Reply_Blue600_light"
-        app:layout_anchor="@id/topArea"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom"
-        />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/userInfoArea"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/divideLine"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userProfileIMG"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/box_cnt_fan_star"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/userProfileIMG"
-            app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/topArea"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:text="닉네임"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_neuris"
-                    android:text="팬"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/cnt_fan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_neuris"
-                    android:hint="팬"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="60dp"
-                android:background="@color/black"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="30dp"
                 />
 
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/btn_edit_userInfo"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="편집"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:fontFamily="@font/nanum_neuris"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_neuris"
-                    android:text="스타"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
+        <View
+            android:id="@+id/divideLine"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/Reply_Blue600_light"
+            app:layout_anchor="@id/topArea"
+            app:layout_anchorGravity="bottom"
+            android:layout_gravity="bottom"
+            />
 
-                <TextView
-                    android:id="@+id/cnt_star"
-                    android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/userInfoArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchor="@id/divideLine"
+            app:layout_anchorGravity="bottom"
+            android:layout_gravity="bottom">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfileIMG"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/box_cnt_fan_star"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/userProfileIMG"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_neuris"
-                    android:hint="스"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_neuris"
+                        android:text="팬"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/cnt_fan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_neuris"
+                        android:hint="팬"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="60dp"
+                    android:background="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_neuris"
+                        android:text="스타"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/cnt_star"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_neuris"
+                        android:hint="스"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <CheckBox
+                android:id="@+id/btn_follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/checkbox_fan"
+                android:button="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.567"
+                app:layout_constraintStart_toEndOf="@+id/userProfileIMG"
+                app:layout_constraintTop_toBottomOf="@+id/box_cnt_fan_star" />
 
-        <TextView
-            android:id="@+id/profileMSG1"
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext_rounded_corner_rectangle_fill"
-            android:fontFamily="@font/nanum_neuris"
-            android:gravity="top"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="40dp"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userProfileIMG" />
 
-        <TextView
-            android:id="@+id/profileMSG2"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="20dp"
-            android:visibility="gone"
-            android:background="@drawable/edittext_rounded_corner_rectangle_fill"
-            android:fontFamily="@font/nanum_neuris"
-            android:gravity="top"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userProfileIMG" />
+            <TextView
+                android:id="@+id/btn_follow_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_neuris"
+                android:hint="팬 등록"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_follow"
+                app:layout_constraintEnd_toEndOf="@+id/btn_follow"
+                app:layout_constraintStart_toStartOf="@+id/btn_follow"
+                app:layout_constraintTop_toTopOf="@+id/btn_follow" />
 
-        <CheckBox
-            android:id="@+id/checkbox_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/checkbox_mypage"
-            android:button="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/profileMSG1"
-            app:layout_constraintTop_toTopOf="@+id/profileMSG1" />
+            <TextView
+                android:id="@+id/profileMSG1"
+                android:layout_width="350dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_rounded_corner_rectangle_fill"
+                android:fontFamily="@font/nanum_neuris"
+                android:gravity="top"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="40dp"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userProfileIMG" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/profileMSG2"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:background="@drawable/edittext_rounded_corner_rectangle_fill"
+                android:fontFamily="@font/nanum_neuris"
+                android:gravity="top"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userProfileIMG" />
 
-    <!-- 공지사항, 팬보드 : 탭에 따라 아래 내용 수정. -->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/notice_fanBoard"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--        -->
-<!--    </LinearLayout>-->
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <CheckBox
+                android:id="@+id/checkbox_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/checkbox_mypage"
+                android:button="@null"
+                app:layout_constraintEnd_toEndOf="@+id/profileMSG1"
+                app:layout_constraintTop_toTopOf="@+id/profileMSG1" />
+
+            <!--     공지사항, 팬보드 : 탭에 따라 아래 내용 수정. -->
+            <LinearLayout
+                android:id="@+id/notice_fanBoard"
+                android:layout_width="match_parent"
+                android:layout_height="760dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileMSG2">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top">
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="공지사항" />-->
+
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="팬보드" />-->
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
