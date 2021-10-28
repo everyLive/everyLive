@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -44,6 +45,20 @@
         <activity android:name=".mypage.Activity_My"/>
         <activity android:name=".mypage.Activity_Mypage"/>
         <activity android:name=".mypage.Activity_Mypage_Modify"/>
+
+        <activity android:name=".livestream.Activity_Liveinsertinfo"/>
+        <activity android:name=".livestream.Activity_Liveupdateinfo"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".livestream.Activity_Livestreamer"/>
+        <activity android:name=".livestream.Activity_Liveplayer"/>
+
+        <activity android:name=".payment.Activity_Selectcoin"/>
+        <service android:name=".livestream.Activity_ChatService"/>
+        <activity android:name=".livestream.Activity_Liveendinfo"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".livestream.Activity_Liveplayerend"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

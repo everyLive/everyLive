@@ -165,6 +165,7 @@
             android:src="@drawable/ic_baseline_arrow_forward_ios_24"/>
 
         <Button
+            android:id="@+id/chargecoin"
             android:layout_width="95dp"
             android:layout_height="40dp"
             android:background="@drawable/side_round_button"

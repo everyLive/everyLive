@@ -51,5 +51,12 @@
         <item>31 일</item>
     </string-array>
 
+    <string-array name="live_category">
+        <item>일상</item>
+        <item>노래/연주</item>
+        <item>수다/챗</item>
+        <item>기타</item>
+    </string-array>
+
 
 </resources>

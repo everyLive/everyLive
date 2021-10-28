@@ -1,4 +1,5 @@
 package com.example.everylive.mypage;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Context;
@@ -7,9 +8,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.android.volley.RequestQueue;
@@ -21,10 +24,25 @@ import com.example.everylive.mypage.Request.RequestGetUseInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 import de.hdodenhof.circleimageview.CircleImageView;
+import kr.co.bootpay.Bootpay;
+import kr.co.bootpay.BootpayAnalytics;
+import kr.co.bootpay.enums.Method;
+import kr.co.bootpay.enums.PG;
+import kr.co.bootpay.enums.UX;
+import kr.co.bootpay.listener.CancelListener;
+import kr.co.bootpay.listener.CloseListener;
+import kr.co.bootpay.listener.ConfirmListener;
+import kr.co.bootpay.listener.DoneListener;
+import kr.co.bootpay.listener.ErrorListener;
+import kr.co.bootpay.listener.ReadyListener;
+import kr.co.bootpay.model.BootExtra;
+import kr.co.bootpay.model.BootUser;
+
 import com.android.volley.Request;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.example.everylive.login.Activity_Login;
+import com.example.everylive.payment.Activity_Selectcoin;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -42,6 +60,10 @@ public class Activity_My extends AppCompatActivity {
 
     TextView btn_logout, btn_secession;
 
+
+    // 결제 선택 화면으로 이동하기
+    Button chargecoin;
+
     // 서버 주소
     private static String IP_ADDRESS = "http://3.36.159.193";
 
@@ -49,6 +71,13 @@ public class Activity_My extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        /**
+         * @author :김태희
+         * @brief : 결제 (10/25~)
+         * */
+        chargecoin = findViewById(R.id.chargecoin);
+
 
         /**
          * @author :김태희
@@ -75,11 +104,24 @@ public class Activity_My extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         String snsType = sharedPref.getString("snsType","defValue");
 
+        mOAuthLoginModule = OAuthLogin.getInstance();
+        mOAuthLoginModule.init(
+                getApplicationContext()
+                ,getString(R.string.naver_client_id)
+                ,getString(R.string.naver_client_secret)
+                ,getString(R.string.naver_client_name));
+
+//        new DeleteTokenTask().execute();
+
+
         // 로그아웃
         btn_logout.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Log.d("setOnClickListener", snsType);
+
+//                mOAuthLoginModule.logout(mContext);
 
                 if(snsType.equals("naver")){
                     // naver 인스턴스를 초기화
@@ -135,6 +177,7 @@ public class Activity_My extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(Activity_My.this);
                 builder.setTitle("회원탈퇴").setMessage("정말 탈퇴하시겠습니까?");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
@@ -142,6 +185,8 @@ public class Activity_My extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id)
                     {
+//                        new DeleteTokenTask().execute();
+
                         // 확인 눌렀을 때 naver, kakao 구분하고 탈퇴처리 및 토큰연동해제
                         if(snsType.equals("naver")){
 
@@ -232,7 +277,25 @@ public class Activity_My extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        // 코인충전 버튼 누르면
+        chargecoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getApplicationContext(), Activity_Selectcoin.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
     }
+
+
 
     @Override
     protected void onStart() {

@@ -52,4 +52,18 @@ dependencies {
 
     // 룰렛 게임
     //implementation 'com.github.mmoamenn:LuckyWheel_Android:0.3.0'
+
+    // 라이브 방송 : 방송자
+    implementation 'com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:2.1.2'
+    // 라이브 방송 : 시청자
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
+    implementation 'com.google.android.exoplayer:extension-rtmp:2.7.3'
+
+    // 부트페이 API 결제 시스템 이용
+    implementation 'com.github.bootpay:client_android_java:3.3.91'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+
 }

@@ -1,32 +1,20 @@
 package com.example.everylive.mypage;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,8 +31,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 
@@ -56,7 +42,6 @@ import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.everylive.R;
-import com.example.everylive.login.Activity_Register;
 import com.example.everylive.mypage.Request.RequestGetUseInfo;
 
 import org.json.JSONException;
@@ -64,8 +49,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -102,7 +85,7 @@ public class Activity_Mypage_Modify extends AppCompatActivity {
 
         requestQueue= Volley.newRequestQueue(Activity_Mypage_Modify.this);
 
-        userProfileIMG1 = findViewById(R.id.userProfileIMG1);
+        userProfileIMG1 = findViewById(R.id.select_IMG);
         userProfileIMG2 = findViewById(R.id.userProfileIMG2);
         userProfileIMG3 = findViewById(R.id.userProfileIMG3);
         btn_back = findViewById(R.id.btn_back);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item
+            android:id="@+id/liveturncamara"
+            android:title="화면전환" />
+        <item
+            android:id="@+id/livesetting"
+            android:title="방송정보수정" />
+        <item
+            android:id="@+id/liveend"
+            android:title="방송종료" />
+
+
+</menu>
