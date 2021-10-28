@@ -139,7 +139,7 @@ public class AdapterNotice extends RecyclerView.Adapter<AdapterNotice.MyViewHold
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                requestRemoveComment(idx_notice_writing, position);
+                requestRemoveNotice(idx_notice_writing, position);
             }
         });
         builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
@@ -151,7 +151,8 @@ public class AdapterNotice extends RecyclerView.Adapter<AdapterNotice.MyViewHold
         builder.create().show();
     }
 
-    private void requestRemoveComment(String idx_notice_writing, int position){
+    // 게시글 삭제가 맞는데,
+    private void requestRemoveNotice(String idx_notice_writing, int position){
         String serverUrl = "http://3.36.159.193/everyLive/mypage/RequestRemoveNotice.php";
 
         //파일 전송 요청 객체 생성[결과를 String으로 받음]

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -158,7 +158,7 @@
 
             <EditText
                 android:id="@+id/notice_comment_MSG"
-                android:layout_width="350dp"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_rounded_corner_rectangle"
                 android:fontFamily="@font/nanum_neuris"

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topArea"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nanum_neuris"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="방송 정보 수정"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divideLine"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/Reply_Blue600_light"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanum_neuris"
+            android:text="방송주제"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/Reply_Orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_neuris"
+            android:text="방송제목"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/updatetitle"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/Reply_Blue600_light"
+            android:fontFamily="@font/nanum_neuris"
+            android:maxLength="20"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cnt_title"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/20"
+            android:textColor="@color/Reply_Blue600_light"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <!-- 인삿말 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/nanum_neuris"
+            android:text="인삿말"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cnt_contents"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Reply_Blue800"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/40"
+            android:textColor="@color/Reply_Blue600_light"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/updatecontents"
+            android:layout_width="350dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            android:fontFamily="@font/nanum_neuris"
+            android:gravity="top"
+            android:maxLength="40"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/Reply_Blue800"
+            android:text="수정하기"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updatecontents" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -8,6 +8,9 @@
         <entry key="..\:/Users/82108/Desktop/everyLive/app/src/main/res/layout/layout.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive2/app/src/main/res/layout/activity_login_agree.xml" value="0.33" />
         <entry key="..\:/Users/82108/Desktop/everyLive2/app/src/main/res/layout/activity_login_register.xml" value="0.25" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/boldline.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/boldline_red.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/boldline_white.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/bottom_left_round.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/bottom_right_round.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/btn_become_a_fan.xml" value="0.3770833333333333" />
@@ -18,6 +21,7 @@
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/dialog_round.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/edittext_rounded_corner_rectangle.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/edittext_rounded_corner_rectangle_fill.xml" value="0.3527777777777778" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.36041666666666666" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.37037037037037035" />
@@ -25,31 +29,48 @@
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_baseline_search_24_white.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/ic_settings.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/item_for_search.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/rounded_corner_right_bottom.xml" value="0.3717948717948718" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/side_round_button.xml" value="0.36203703703703705" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/top_round.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/drawable/tttt.xml" value="0.36203703703703705" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/font/fontstyle.xml" value="0.325" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_chat_items.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_home.xml" value="0.18" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_home_items.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_liveendinfo.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_liveinsertinfo.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_liveplayer.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_liveplayerend.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_livestreamer.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_liveupdateinfo.xml" value="0.2578125" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_login_register.xml" value="0.33" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_my.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_mypage.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_mypage_modify.xml" value="0.25" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_register.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_report.xml" value="0.33" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_roulette.xml" value="0.22" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_roulette_my.xml" value="0.25" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_search.xml" value="0.33" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/activity_selectcoin.xml" value="0.2578125" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/diaglog_edit_profile_img.xml" value="0.9" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/dialog_birthday.xml" value="0.33" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/dialog_gender.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/fragment_fanboard.xml" value="0.33" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/fragment_notice.xml" value="0.28351449275362317" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/item_comment.xml" value="0.5" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/item_fanboard.xml" value="0.4847715736040609" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/item_for_search.xml" value="0.3007246376811594" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/item_live.xml" value="0.5" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/item_notice.xml" value="0.33" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/roulette.xml" value="0.33" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/spinner_color.xml" value="0.2578125" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/layout/wheel_text_layout.xml" value="0.67" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/menu/search_menu.xml" value="0.33" />
+        <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/menu/setting_livestreming.xml" value="0.2578125" />
         <entry key="..\:/Users/82108/Desktop/everyLive95/app/src/main/res/xml/filepaths.xml" value="0.20364583333333333" />
       </map>
     </option>

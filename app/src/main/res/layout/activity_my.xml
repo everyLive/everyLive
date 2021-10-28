@@ -205,6 +205,7 @@
             >
 
             <ImageView
+                android:id="@+id/btn_roulette"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/roulette"
@@ -214,7 +215,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/cardgame"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -246,6 +248,7 @@
                 android:padding="5dp"
                 android:background="@color/white"
                 android:text="· 알림설정"
+                android:visibility="gone"
                 android:fontFamily="@font/nanum_neuris"
                 android:textStyle="bold"
                 android:textSize="25dp"

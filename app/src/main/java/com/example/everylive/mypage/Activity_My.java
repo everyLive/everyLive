@@ -3,10 +3,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.everylive.R;
+import com.example.everylive.game.roulette;
 import com.example.everylive.mypage.Request.RequestGetUseInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.example.everylive.login.Activity_Login;
+import com.example.everylive.mypage.setting.Activity_Report;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -34,6 +38,7 @@ public class Activity_My extends AppCompatActivity {
     CircleImageView profileIMG;
     TextView userNickName, userID, cnt_fan, cnt_star;
     ConstraintLayout go_to_activityMypage;
+    TextView btn_broadcastReport;
 
     private static final String TAG = "마이페이지";
 
@@ -41,6 +46,7 @@ public class Activity_My extends AppCompatActivity {
     Context mContext;
 
     TextView btn_logout, btn_secession;
+    ImageView btn_roulette;
 
     // 서버 주소
     private static String IP_ADDRESS = "http://3.36.159.193";
@@ -67,6 +73,8 @@ public class Activity_My extends AppCompatActivity {
         cnt_fan = findViewById(R.id.cnt_fan);
         cnt_star = findViewById(R.id.cnt_star);
         go_to_activityMypage = findViewById(R.id.go_to_activityMypage);
+        btn_broadcastReport = findViewById(R.id.btn_broadcastReport);
+        btn_roulette = findViewById(R.id.btn_roulette);
 
         /** @author : 김태희 */
         // snsType check : 로그아웃에 사용. naver냐 kakao냐에 따라 다른 로그아웃 처리 필요.
@@ -234,6 +242,24 @@ public class Activity_My extends AppCompatActivity {
                 String idx_user = sharedPreferences.getString("idx_user",null);
                 intent.putExtra("page_owner", idx_user);
 
+                startActivity(intent);
+            }
+        });
+
+        // 방송 리포트 보기
+        btn_broadcastReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_My.this, Activity_Report.class);
+                startActivity(intent);
+            }
+        });
+
+        // 룰렛 돌리러 가기
+        btn_roulette.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_My.this, roulette.class);
                 startActivity(intent);
             }
         });

@@ -19,9 +19,6 @@ public class Item_notice_writing {
     String comment_imgUrl; // 댓글 다는 사람 프로필 이미지
 
     ArrayList<Item_notice_Comment> commentArrayList;
-    // 추가한거
-    // 어댑터 추가
-    // 리사이클러뷰에 어댑터 달기?
 
     public Item_notice_writing(Context context){
         this.context = context;
@@ -29,7 +26,7 @@ public class Item_notice_writing {
     }
 
     public void addCommentArrayList(Item_notice_Comment item_notice_comment){
-        commentArrayList.add(0, item_notice_comment); // 최신순으로 넣기.
+        commentArrayList.add(item_notice_comment); // 최신순으로 넣기.
     }
 
     public Item_notice_writing(String idx_notice_writing, String writer_nickName, String writer_imgUrl, String writeDate, String textContents, String imgContents, ArrayList<Item_notice_Comment> commentArrayList) {

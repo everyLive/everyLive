@@ -8,50 +8,73 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-
         android:usesCleartextTraffic="true"
-        android:allowBackup="true"
+        android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme" >
+
         <!--        volleyplus 라이브러리 사용시 필요-->
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-        <activity android:name=".home.Activity_Home">
+        <activity android:name=".login.Activity_Login"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".home.Activity_Search"
-            android:theme="@style/Theme2"/>
-
-        <activity android:name=".login.Activity_Login"
-            android:exported="true">
-
         </activity>
 
-        <!-- 속성 android:exported 의미
+        <!-- 속성 android:exported 의미 : 그래들 7.0.1 이면 export (x)
              다른 앱이나 시스템에서 해당 서비스를 access 할 수 있음을 의미.
              해당 값이 false일 경우, 오로지 앱내부에서만 실행 가능함.
              Kakao 앱 또는 앱 내장 브라우저 인증 방식으로 카카오 계정 로그인 후 다시 앱으로 돌아올때 사용되는 부분으로
              해당 코드가 누락될 경우 로그인 후 앱으로 돌아지 않게 된다.
         -->
 
-        <activity android:name=".login.Activity_Register"
-            android:exported="true"/>
+        <activity android:name=".login.Activity_Register" android:exported="true"/>
 
-        <activity android:name=".mypage.Activity_My">
+        <activity android:name=".home.Activity_Home" android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".home.Activity_Search"
+            android:theme="@style/Theme2" android:exported="true"/>
+
+        <activity android:name=".mypage.Activity_My" android:exported="true">
 
         </activity>
-        <activity android:name=".mypage.Activity_Mypage"/>
-        <activity android:name=".mypage.Activity_Mypage_Modify"/>
+        <activity android:name=".mypage.Activity_Mypage" android:exported="true"/>
+        <activity android:name=".mypage.Activity_Mypage_Modify" android:exported="true"/>
+
+        <activity android:name=".mypage.setting.Activity_Report"
+            android:theme="@style/AppTheme"/>
+
+        <activity android:name=".game.roulette" android:exported="true"/>
+
+
+        <activity android:name=".livestream.Activity_Liveinsertinfo"/>
+        <activity android:name=".livestream.Activity_Liveupdateinfo"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".livestream.Activity_Livestreamer"/>
+        <activity android:name=".livestream.Activity_Liveplayer"/>
+
+        <activity android:name=".payment.Activity_Selectcoin"/>
+        <service android:name=".livestream.Activity_ChatService"/>
+        <activity android:name=".livestream.Activity_Liveendinfo"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".livestream.Activity_Liveplayerend"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

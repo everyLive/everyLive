@@ -93,9 +93,9 @@ public class ViewHolder_Notice extends RecyclerView.ViewHolder {
             });
 
         }else{
-            notice_userImg.setVisibility(View.INVISIBLE);
-            noticeMSG.setVisibility(View.INVISIBLE);
-            btn_noticeMSG.setVisibility(View.INVISIBLE);
+            notice_userImg.setVisibility(View.GONE);
+            noticeMSG.setVisibility(View.GONE);
+            btn_noticeMSG.setVisibility(View.GONE);
         }
 
         // 공지사항 정보 가져오기.

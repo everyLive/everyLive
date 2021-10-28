@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <string-array name="date_month">
         <item>1 월</item>
         <item>2 월</item>
@@ -51,5 +50,10 @@
         <item>31 일</item>
     </string-array>
 
-
+    <string-array name="live_category">
+        <item>일상</item>
+        <item>노래/연주</item>
+        <item>수다/챗</item>
+        <item>기타</item>
+    </string-array>
 </resources>

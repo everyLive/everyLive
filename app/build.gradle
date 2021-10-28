@@ -31,6 +31,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+}
+
+repositories {
+    maven {url 'https://jitpack.io'}
 }
 
 dependencies {
@@ -57,4 +62,28 @@ dependencies {
 
     // 뷰페이저 2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // 막대그래프
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+
+    // date picker
+    implementation("com.google.android.material:material:1.2.0-alpha03")
+
+    // 룰렛
+    implementation 'github.hellocsl:CursorWheelLayout:1.1.0'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    // 라이브 방송 : 방송자
+    implementation 'com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:2.1.2'
+
+    // 라이브 방송 : 시청자
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
+    implementation 'com.google.android.exoplayer:extension-rtmp:2.7.3'
+
+    // 부트페이 API 결제 시스템 이용
+    implementation 'com.github.bootpay:client_android_java:3.3.91'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,10 +56,9 @@ public class Activity_Search extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recycler_search);
-        recyclerView.setHasFixedSize(true);
+        recycler_search.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recycler_search.setLayoutManager(layoutManager);
 
         dataSet = new ArrayList<>();
 
@@ -79,11 +79,11 @@ public class Activity_Search extends AppCompatActivity {
                         for(int i=0; i<jsonArray.length(); i++){
                             JSONObject json_userInfo = jsonArray.getJSONObject(i);
                             dataSet.add(new ItemForSearch(json_userInfo.getString("idx_user"),json_userInfo.getString("profileIMG"),json_userInfo.getString("nickName")));
-                            Log.d("dataSet>?", json_userInfo.getString("idx_user"));
                         }
 
                         adatperForSearch = new AdatperForSearch(dataSet, Activity_Search.this);
-                        recyclerView.setAdapter(adatperForSearch);
+                        recycler_search.setAdapter(adatperForSearch);
+                        recycler_search.setVisibility(View.INVISIBLE);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -117,13 +117,17 @@ public class Activity_Search extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("newText1",query);
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d("newText",newText);
-                adatperForSearch.getFilter().filter(newText);
+                if(newText.length() > 0){
+                    recycler_search.setVisibility(View.VISIBLE);
+                    adatperForSearch.getFilter().filter(newText);
+                }else{
+                    recycler_search.setVisibility(View.INVISIBLE);
+                }
+
                 return false;
             }
         });
